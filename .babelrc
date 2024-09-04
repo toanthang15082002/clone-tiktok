@@ -1,0 +1,10 @@
+//file cấu hình import
+{
+  "plugins": [
+    ["module-resolver", {
+      "alias": {
+        "~": "./src",
+      }
+    }]
+  ]
+}
