@@ -1,20 +1,7 @@
 import { useEffect, useState } from 'react';
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCircleQuestion,
-  faCircleXmark,
-  faCloudUpload,
-  faCoins,
-  faEarthAsia,
-  faEllipsisVertical,
-  faGear,
-  faKeyboard,
-  faMagnifyingGlass,
-  faSignOut,
-  faSpinner,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCircleXmark, faEllipsisVertical, faSpinner, faUser } from '@fortawesome/free-solid-svg-icons';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
@@ -25,12 +12,25 @@ import styles from './Header.module.scss';
 import images from '~/assets/images';
 import AccountItem from '~/components/AccountItem';
 import Menu from '~/components/Popper/Menu';
+import {
+  CoinIcon,
+  HelpIcon,
+  InboxIcon,
+  LanguageIcon,
+  LogoutIcon,
+  MessageIcon,
+  SearchIcon,
+  SettingsIcon,
+  ShortcutsIcon,
+  UploadIcon,
+} from '~/components/Icons';
+import Image from '~/components/Image';
 
 const cx = classNames.bind(styles);
 
 const MENU_ITEMS = [
   {
-    icon: <FontAwesomeIcon icon={faEarthAsia} />,
+    icon: <LanguageIcon />,
     title: 'English',
     children: {
       title: 'Language',
@@ -47,15 +47,17 @@ const MENU_ITEMS = [
         },
       ],
     },
+    to: '',
   },
   {
-    icon: <FontAwesomeIcon icon={faCircleQuestion} />,
+    icon: <HelpIcon />,
     title: 'Feedback and help',
     to: '/feedback',
   },
   {
-    icon: <FontAwesomeIcon icon={faKeyboard} />,
+    icon: <ShortcutsIcon />,
     title: 'Keyboard shortcuts',
+    to: '',
   },
 ];
 
@@ -89,18 +91,18 @@ const Header = () => {
       to: '@moa',
     },
     {
-      icon: <FontAwesomeIcon icon={faCoins} />,
+      icon: <CoinIcon />,
       title: 'Get coins',
       to: '/coin',
     },
     {
-      icon: <FontAwesomeIcon icon={faGear} />,
+      icon: <SettingsIcon />,
       title: 'Settings',
       to: '/settings',
     },
     ...MENU_ITEMS,
     {
-      icon: <FontAwesomeIcon icon={faSignOut} />,
+      icon: <LogoutIcon />,
       title: 'Log out',
       to: '/logout',
       separate: true,
@@ -135,7 +137,7 @@ const Header = () => {
             <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
 
             <button className={cx('search-btn')}>
-              <FontAwesomeIcon icon={faMagnifyingGlass} />
+              <SearchIcon />
             </button>
           </div>
         </HeadlessTippy>
@@ -143,9 +145,19 @@ const Header = () => {
         <div className={cx('actions')}>
           {currentUser ? (
             <>
-              <Tippy delay={[0, 200]} content="Upload video" placement="bottom">
+              <Tippy delay={[0, 100]} content="Upload video" placement="bottom">
                 <button className={cx('action-btn')}>
-                  <FontAwesomeIcon icon={faCloudUpload} />
+                  <UploadIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 100]} content="Message" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <MessageIcon />
+                </button>
+              </Tippy>
+              <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
+                <button className={cx('action-btn')}>
+                  <InboxIcon />
                 </button>
               </Tippy>
             </>
@@ -157,11 +169,11 @@ const Header = () => {
           )}
           <Menu items={currentUser ? userMenu : MENU_ITEMS} onChange={handleMenuChange}>
             {currentUser ? (
-              <img
+              <Image
                 className={cx('user-avatar')}
                 alt="Nguyen Van A"
                 src="https://yt3.ggpht.com/0bhkzzb5mw7XrTeuA7I_Lx-LxTZaeAJcSUEtt0rkUWQp6v1yR_cEiw0NJWvLAShw0AOLhWmZlA=s68-c-k-c0x00ffffff-no-rj"
-              ></img>
+              />
             ) : (
               <button className={cx('more-btn')}>
                 <FontAwesomeIcon icon={faEllipsisVertical} />
