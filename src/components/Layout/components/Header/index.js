@@ -19,6 +19,7 @@ import {
   LanguageIcon,
   LogoutIcon,
   MessageIcon,
+  ProfileIcon,
   SearchIcon,
   SettingsIcon,
   ShortcutsIcon,
@@ -86,7 +87,7 @@ const Header = () => {
 
   const userMenu = [
     {
-      icon: <FontAwesomeIcon icon={faUser} />,
+      icon: <ProfileIcon />,
       title: 'View profile',
       to: '@moa',
     },
@@ -158,6 +159,7 @@ const Header = () => {
               <Tippy delay={[0, 100]} content="Inbox" placement="bottom">
                 <button className={cx('action-btn')}>
                   <InboxIcon />
+                  <span className={cx('badge')}>12</span>
                 </button>
               </Tippy>
             </>
