@@ -1,4 +1,4 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 import Header from '~/layouts/components/Header';
 
 const HeaderOnly = ({ children }) => {
@@ -10,6 +10,10 @@ const HeaderOnly = ({ children }) => {
       </div>
     </div>
   );
+};
+
+HeaderOnly.propTypes = {
+  children: PropTypes.node.isRequired,
 };
 
 export default HeaderOnly;
